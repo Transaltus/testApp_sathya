@@ -1,0 +1,95 @@
+<mvc:View controllerName="project2.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+ xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+<Shell>
+<Page id="page" title="{i18n>title}">
+
+<content>
+	
+<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+adjustLabelSpan="false" emptySpanXL="5" emptySpanL="5" emptySpanM="5" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+singleContainerFullSize="false">
+            <!-- <FlexBox class="sapUiMediumMargin" alignItems="Start" justifyContent="Center">
+				<items> -->
+				<!-- <HBox> -->
+                    
+                        <!-- <Label text="Download Format" design="Bold" />
+						<Button tooltip="Download Format" width="30%" icon="sap-icon://download" type="Ghost" press="onDownloadExcel"/> -->
+						<Label text="File Attachment" design="Bold">
+                        <layoutData>
+							<l:GridData span="L4 M6 S6"/>
+						</layoutData>
+                        </Label>
+                        <u:FileUploader fileType="xlsx" id="fup" iconOnly="true" icon="sap-icon://attachment" name="myFileUpload" uploadUrl="upload/"
+							tooltip="Upload your Excel file" uploadComplete="onUploadCompleteFUP" change="fahj" typeMissmatch="handleTypeMissmatch"
+							placeholder="Choose a file for Upload" buttonOnly="false" width="80%" fileAllowed="onUploadCompleteFUP">
+
+                        </u:FileUploader>    
+                        <core:Icon src="sap-icon://excel-attachment" id="idXlIcon" color="green" height="40px" width="40px" visible="true" tooltip="File Attached"/>
+						<Label text="Download Format" design="Bold" >
+                        <layoutData>
+							<l:GridData span="L2 M6 S6"/>
+						</layoutData>
+                        </Label>
+                        <Button tooltip="Download Format" width="60%" icon="sap-icon://download" type="Ghost" press="onDownloadExcel" text="Format">
+                        <layoutData>
+							<l:GridData span="L4 M6 S6"/>
+						</layoutData>
+                        </Button>
+                        <Label text="File Upload" design="Bold" >
+                        <layoutData>
+							<l:GridData span="L4 M6 S6"/>
+						</layoutData>
+                        </Label>
+                        <Button tooltip="Upload" width="60%" icon="sap-icon://upload" type="Ghost" press="onUploadExcel" text="Upload">
+                        <layoutData>
+							<l:GridData span="L4 M6 S6"/>
+						</layoutData>
+                        </Button>
+                        
+                    
+					<!-- </HBox> -->
+				<!-- </items>
+			</FlexBox> -->
+</f:SimpleForm>            
+
+			<Table id="res_table" items="{res>/}" growing="false" visible="true" alternateRowColors="true" showSeparators="All">
+				<headerToolbar>
+					<Toolbar>
+						<ToolbarSpacer/>
+                        <Button text="" type="Accept" icon="sap-icon://order-status" press="onDownloadStatus" tooltip="Download as Excel" />
+						<SearchField width="20%" liveChange="searchErrors"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Label text="ID" design="Bold" wrapping="true"/>
+					</Column>
+					<Column>
+						<Label text="Status" design="Bold" wrapping="true"/>
+					</Column>
+					<Column>
+						<Label text="Risk Assessment ID" design="Bold" wrapping="true"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem >
+						<cells>
+							<ObjectIdentifier title="{res>ID}"/>
+							<ObjectStatus class="sapUiSmallMarginBottom" press="OpenPOPOVER" active="{= ${res>state} === 'Error' ? true : false }" text="{res>status}"
+								state="{res>state}"/>
+							<ObjectIdentifier title="{res>RAID}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+</content>
+<footer>
+<Toolbar>
+<ToolbarSpacer ></ToolbarSpacer>
+<Button id="idStatusBtn" text="Status Log" type="Emphasized" icon="sap-icon://order-status" press="onDownloadStatus" visible="false"></Button>
+</Toolbar>
+</footer>
+</Page>
+</Shell>
+</mvc:View>
